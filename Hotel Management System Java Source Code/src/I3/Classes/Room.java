@@ -1,46 +1,46 @@
 package I3.Classes;
 
 public class Room {
-    private int room_id;
-    private String room_no;
-    private int bed_number;
+    private int roomId;
+    private String roomNo;
+    private int bedNumber;
 
     private boolean hasTV;
-    private boolean hasWIFI;
+    private boolean hasWiFi;
     private boolean hasGizer;
     private boolean hasPhone;
 
-    private RoomFare room_class;
+    private RoomFare roomClass;
 
     public Room(String roomNo) {
-        room_no = roomNo;
+        this.roomNo = roomNo;
     }
 
-    public int getRoom_id() {
-        return room_id;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
-    public String getRoom_no() {
-        return room_no;
+    public String getRoomNo() {
+        return roomNo;
     }
 
-    public void setRoom_no(String room_no) {
-        this.room_no = room_no;
+    public void setRoomNo(String roomNo) {
+        this.roomNo = roomNo;
     }
 
-    public int getBed_number() {
-        return bed_number;
+    public int getBedNumber() {
+        return bedNumber;
     }
 
-    public void setBed_number(int bed_number) {
-        this.bed_number = bed_number;
+    public void setBedNumber(int bedNumber) {
+        this.bedNumber = bedNumber;
     }
 
-    public boolean isHasTV() {
+    public boolean hasTV() {
         return hasTV;
     }
 
@@ -48,15 +48,15 @@ public class Room {
         this.hasTV = hasTV;
     }
 
-    public boolean isHasWIFI() {
-        return hasWIFI;
+    public boolean hasWiFi() {
+        return hasWiFi;
     }
 
-    public void setHasWIFI(boolean hasWIFI) {
-        this.hasWIFI = hasWIFI;
+    public void setHasWiFi(boolean hasWiFi) {
+        this.hasWiFi = hasWiFi;
     }
 
-    public boolean isHasGizer() {
+    public boolean hasGizer() {
         return hasGizer;
     }
 
@@ -64,7 +64,7 @@ public class Room {
         this.hasGizer = hasGizer;
     }
 
-    public boolean isHasPhone() {
+    public boolean hasPhone() {
         return hasPhone;
     }
 
@@ -72,12 +72,25 @@ public class Room {
         this.hasPhone = hasPhone;
     }
 
-    public RoomFare getRoom_class() {
-        return room_class;
+    public RoomFare getRoomClass() {
+        return roomClass;
     }
 
-    public void setRoom_class(RoomFare room_class) {
-        this.room_class = room_class;
+    public void setRoomClass(RoomFare roomClass) {
+        this.roomClass = roomClass;
     }
 
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomId=" + roomId +
+                ", roomNo='" + roomNo + '\'' +
+                ", bedNumber=" + bedNumber +
+                ", hasTV=" + hasTV +
+                ", hasWiFi=" + hasWiFi +
+                ", hasGizer=" + hasGizer +
+                ", hasPhone=" + hasPhone +
+                ", roomClass=" + roomClass +
+                '}';
+    }
 }

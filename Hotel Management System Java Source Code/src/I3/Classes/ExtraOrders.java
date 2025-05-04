@@ -1,35 +1,37 @@
 package I3.Classes;
 
+import java.time.LocalDateTime;
+
 public class ExtraOrders {
 
-    private int order_id;
-    private int customer_id;
-    private String dateTime;
+    private int orderId;
+    private int customerId;
+    private LocalDateTime dateTime;
     private int quantity;
     private Item item;
-    // int order_total;
 
-    public int getOrder_id() {
-        return order_id;
+    // Getters and Setters
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -49,8 +51,8 @@ public class ExtraOrders {
         this.item = item;
     }
 
+    // Calculate the total cost of the order
     public int calculateTotal() {
         return item.getPrice() * quantity;
     }
-
 }

@@ -8,18 +8,18 @@ package I3.Classes;
 public class UserInfo {
 
     // USER PROPERTIES
-    private int customer_id;
+    private int customerId;
     private String name;
     private String address;
-    private String phone_no;
+    private String phoneNo;
     private String type;
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -38,12 +38,12 @@ public class UserInfo {
         this.address = address;
     }
 
-    public String getPhone_no() {
-        return phone_no;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setPhone_no(String phone_no) {
-        this.phone_no = phone_no;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getType() {
@@ -54,4 +54,14 @@ public class UserInfo {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "customerId=" + customerId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

@@ -26,10 +26,6 @@ import net.proteanit.sql.DbUtils;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.joda.time.Interval;
 
-/**
- *
- * @author Faysal
- */
 public class PaymentPanel extends javax.swing.JDialog {
 
     /**

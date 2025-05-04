@@ -1,26 +1,22 @@
 package I3.Classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Payment {
 
-    // required Object
     private Booking booking;
-    ArrayList<ExtraOrders> orders;
-    int totalRentPrice;
-    int daysStayed;
-    private String payment_date;
-    private String payment_method;
-
+    private List<ExtraOrders> orders = new ArrayList<>();
+    private int totalRentPrice;
+    private int daysStayed;
+    private String paymentDate;
+    private String paymentMethod;
     private boolean hasDiscount;
     private float discount;
+    private int totalBill;
 
-    int totalBill;
-
-    public Payment(Booking b) {
-        booking = b;
-        // totalRentPrice = b.getRoomsFare() * 1;
-
+    public Payment(Booking booking) {
+        this.booking = booking;
     }
 
     public Booking getBooking() {
@@ -31,23 +27,23 @@ public class Payment {
         this.booking = booking;
     }
 
-    public String getPayment_date() {
-        return payment_date;
+    public String getPaymentDate() {
+        return paymentDate;
     }
 
-    public void setPayment_date(String payment_date) {
-        this.payment_date = payment_date;
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
-    public String getPayment_method() {
-        return payment_method;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public boolean isHasDiscount() {
+    public boolean hasDiscount() {
         return hasDiscount;
     }
 
@@ -64,14 +60,49 @@ public class Payment {
     }
 
     public int calculateTotalBill() {
-        int orderTotal = 0;
-
-        for (ExtraOrders order : orders) {
-            orderTotal += order.getQuantity() * order.getItem().getPrice();
-        }
+        int orderTotal = orders.stream()
+                .mapToInt(order -> order.getQuantity() * order.getItem().getPrice())
+                .sum();
         totalBill = orderTotal + totalRentPrice;
-
         return totalBill;
     }
 
+    public List<ExtraOrders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<ExtraOrders> orders) {
+        this.orders = orders;
+    }
+
+    public int getTotalRentPrice() {
+        return totalRentPrice;
+    }
+
+    public void setTotalRentPrice(int totalRentPrice) {
+        this.totalRentPrice = totalRentPrice;
+    }
+
+    public int getDaysStayed() {
+        return daysStayed;
+    }
+
+    public void setDaysStayed(int daysStayed) {
+        this.daysStayed = daysStayed;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "booking=" + booking +
+                ", orders=" + orders +
+                ", totalRentPrice=" + totalRentPrice +
+                ", daysStayed=" + daysStayed +
+                ", paymentDate='" + paymentDate + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", hasDiscount=" + hasDiscount +
+                ", discount=" + discount +
+                ", totalBill=" + totalBill +
+                '}';
+    }
 }

@@ -13,92 +13,88 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ItemDb {
-    Connection conn = DataBaseConnection.connectTODB();
-    PreparedStatement statement = null;
-    ResultSet result = null;
+    private final Connection conn = DataBaseConnection.connectTODB();
+    private PreparedStatement statement = null;
+    private ResultSet result = null;
 
     public void insertItem(Item item) {
+        String insertItem = "INSERT INTO item (name, description, price) VALUES (?, ?, ?)";
         try {
-            String insertItem = "insert into item('name','description','price') values('" + item.getItem_name() + "','"
-                    + item.getDescription() + "'," + item.getPrice() + ")";
-
-            // System.out.println(">>>>>>>>>> "+ insertRoomTypeQuery);
             statement = conn.prepareStatement(insertItem);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully inserted a new insertItem");
-
+            statement.setString(1, item.getItemName());
+            statement.setString(2, item.getDescription());
+            statement.setDouble(3, item.getPrice());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully inserted a new item");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "InsertQuery of insertItem Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nInsert query for item failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
     }
 
     public void updateItem(Item item) {
+        String updateItem = "UPDATE item SET name = ?, price = ?, description = ? WHERE item_id = ?";
         try {
-            String updateFood = "update food set name= '" + item.getItem_name() + "', price= " + item.getPrice()
-                    + "description = '" + item.getDescription() + "' where item_id = " + item.getItem_id();
-
-            // System.out.println(">>>>>>>>>> "+ insertRoomTypeQuery);
-            statement = conn.prepareStatement(updateFood);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully updateitem ");
-
+            statement = conn.prepareStatement(updateItem);
+            statement.setString(1, item.getItemName());
+            statement.setDouble(2, item.getPrice());
+            statement.setString(3, item.getDescription());
+            statement.setInt(4, item.getItemId());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully updated item");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Update Item failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nUpdate query for item failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
     }
 
     public ResultSet getItems() {
+        String query = "SELECT * FROM item";
         try {
-            String query = "select * from item";
             statement = conn.prepareStatement(query);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming from returning all item DB Operation");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError retrieving all items");
         }
-
         return result;
     }
 
     public void deleteItem(int itemId) {
+        String deleteQuery = "DELETE FROM item WHERE item_id = ?";
         try {
-            String deleteQuery = "delete from item where item_id=" + itemId;
             statement = conn.prepareStatement(deleteQuery);
-            statement.execute();
+            statement.setInt(1, itemId);
+            statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Deleted item");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Delete query Item Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nDelete query for item failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
     }
 
     public void flushAll() {
-        {
-            try {
+        try {
+            if (statement != null) {
                 statement.close();
+            }
+            if (result != null) {
                 result.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
             }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
         }
     }
 
-    private void flushStatmentOnly() {
-        {
-            try {
+    private void flushStatementOnly() {
+        try {
+            if (statement != null) {
                 statement.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
             }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
         }
     }
-
 }

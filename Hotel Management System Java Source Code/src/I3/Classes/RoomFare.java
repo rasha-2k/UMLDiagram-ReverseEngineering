@@ -2,15 +2,15 @@ package I3.Classes;
 
 public class RoomFare {
 
-    private String room_type;
+    private String roomType;
     private int pricePerDay;
 
-    public String getRoom_type() {
-        return room_type;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoom_type(String room_type) {
-        this.room_type = room_type;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
     public int getPricePerDay() {
@@ -21,4 +21,11 @@ public class RoomFare {
         this.pricePerDay = pricePerDay;
     }
 
+    @Override
+    public String toString() {
+        return "RoomFare{" +
+                "roomType='" + roomType + '\'' +
+                ", pricePerDay=" + pricePerDay +
+                '}';
+    }
 }

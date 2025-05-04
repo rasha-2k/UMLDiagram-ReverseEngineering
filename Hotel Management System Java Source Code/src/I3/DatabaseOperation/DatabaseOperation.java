@@ -13,205 +13,167 @@ import javax.swing.JOptionPane;
 
 public class DatabaseOperation {
 
-    Connection conn = DataBaseConnection.connectTODB();
-    PreparedStatement statement = null;
-    ResultSet result = null;
+    private final Connection conn = DataBaseConnection.connectTODB();
+    private PreparedStatement statement = null;
+    private ResultSet result = null;
 
-    public void insertCustomer(UserInfo user) throws SQLException {
+    public void insertCustomer(UserInfo user) {
+        String insertQuery = "INSERT INTO userInfo (name, address, phone, type) VALUES (?, ?, ?, ?)";
         try {
-            String insertQuery = "insert into userInfo"
-                    + "('" + "name" + "'," + "'" + "address" + "','" + "phone" + "','" + "type" + "')"
-                    + " values('"
-                    + user.getName()
-                    + "','" + user.getAddress() + "'"
-                    + ",'" + user.getPhone_no() + "'"
-                    + ",'" + user.getType() + "'"
-                    + ")";
-
-            // System.out.println(">>>>>>>>>> "+ insertQuery);
             statement = conn.prepareStatement(insertQuery);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully inserted new Customer");
-
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getAddress());
+            statement.setString(3, user.getPhoneNo());
+            statement.setString(4, user.getType());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully inserted new Customer");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "InsertQuery Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nInsertQuery Failed");
         } finally {
-            flushStatmentOnly();
-        }
-
-    }
-
-    public void flushAll() {
-        {
-            try {
-                statement.close();
-                result.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
-            }
+            flushStatementOnly();
         }
     }
 
     public void updateCustomer(UserInfo user) {
-        // update userInfo set name = 'faysal' ,address = 'dhaka' where user_id = 3
+        String updateQuery = "UPDATE userInfo SET name = ?, address = ?, phone = ?, type = ? WHERE user_id = ?";
         try {
-            String updateQuery = "update userInfo set name = '"
-                    + user.getName() + "',"
-                    + "address = '" + user.getAddress() + "',"
-                    + "phone = '" + user.getPhone_no() + "',"
-                    + "type = '" + user.getType() + "' where user_id= "
-                    + user.getCustomer_id();
-
-            // System.out.println(">>>>>>>>>> "+ insertQuery);
-            // System.out.println(updateQuery);
             statement = conn.prepareStatement(updateQuery);
-
-            // System.out.println(updateQuery);
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully updated new Customer");
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getAddress());
+            statement.setString(3, user.getPhoneNo());
+            statement.setString(4, user.getType());
+            statement.setInt(5, user.getCustomerId());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully updated Customer");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Update query Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nUpdate query Failed");
+        } finally {
+            flushStatementOnly();
         }
-
     }
 
-    public void deleteCustomer(int userId) throws SQLException {
+    public void deleteCustomer(int userId) {
+        String deleteQuery = "DELETE FROM userInfo WHERE user_id = ?";
         try {
-            String deleteQuery = "delete from userInfo where user_id=" + userId;
             statement = conn.prepareStatement(deleteQuery);
-            statement.execute();
+            statement.setInt(1, userId);
+            statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Deleted user");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Delete query Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nDelete query Failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
-
     }
 
     public ResultSet getAllCustomer() {
+        String query = "SELECT * FROM userInfo";
         try {
-            String query = "select * from userInfo";
             statement = conn.prepareStatement(query);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.toString() + "\n error coming from returning all customer DB Operation");
-        } finally {
-            flushAll();
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError retrieving all customers");
         }
-
         return result;
     }
 
-    /// ************************************************************************  SEARCH AND OTHERS ************************************************
     public ResultSet searchUser(String user) {
+        String query = "SELECT user_id, name, address FROM userInfo WHERE name LIKE ?";
         try {
-            String query = "select user_id,name,address from userInfo where name like '%" + user + "%'";
-
             statement = conn.prepareStatement(query);
+            statement.setString(1, "%" + user + "%");
             result = statement.executeQuery();
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming from search user function");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError in search user function");
         }
-        // System.out.println("fetching something");
         return result;
     }
 
     public ResultSet searchAnUser(int id) {
+        String query = "SELECT * FROM userInfo WHERE user_id = ?";
         try {
-            String query = "select * from userInfo where user_id=" + id;
-
             statement = conn.prepareStatement(query);
+            statement.setInt(1, id);
             result = statement.executeQuery();
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming from returning AN user function");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError in returning a user function");
         }
-        // System.out.println("fetching something");
         return result;
     }
 
     public ResultSet getAvailableRooms(long check_inTime) {
+        String query = "SELECT room_no FROM room LEFT OUTER JOIN booking ON room.room_no = booking.booking_room "
+                + "WHERE booking.booking_room IS NULL OR ? < booking.check_in OR booking.check_out < ? "
+                + "GROUP BY room.room_no ORDER BY room_no";
         try {
-
-            ///SELECT room_no FROM room LEFT OUTER JOIN booking ON room.room_no = booking.rooms WHERE booking.rooms is null or booking.check_out < strftime('%s', 'now')
-            // SELECT distinct room_no FROM room LEFT OUTER JOIN booking ON room.room_no =
-            // booking.rooms WHERE booking.rooms is null or booking.check_out <
-            // strftime('%s', 'now') order by check_out desc
-            String query = "SELECT room_no FROM room LEFT OUTER JOIN booking ON room.room_no = booking.booking_room WHERE booking.booking_room is null or "
-                    + check_inTime + "< booking.check_in " + "or booking.check_out <" + check_inTime
-                    + " group by room.room_no  order by room_no ";
-            System.out.println(query);
             statement = conn.prepareStatement(query);
+            statement.setLong(1, check_inTime);
+            statement.setLong(2, check_inTime);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.toString() + "\n error coming from returning free rooms from getAvailable func.");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError in returning free rooms");
         }
-
         return result;
     }
 
     public ResultSet getBookingInfo(long start_date, long end_date, String roomNo) {
+        String query = "SELECT * FROM booking WHERE booking_room = ? AND ("
+                + "(check_in <= ? AND (check_out = 0 OR check_out <= ?)) OR "
+                + "(check_in > ? AND check_out < ?) OR "
+                + "(check_in <= ? AND (check_out = 0 OR check_out > ?)))";
         try {
-            /*
-             * 
-             * select * from booking where
-             * (check_in <= start_date and (check_out=0 or check_out<= end_date ) )
-             * or
-             * (check_in>start_date and check_out< end_date)
-             * or
-             * (check_in <=end_date and (check_out =0 or check_out > end_date) )
-             * 
-             */
-
-            String query = "select * from booking where booking_room = '" + roomNo + "' AND ("
-                    + "( check_in <= " + start_date + " and ( check_out = 0 or check_out<= " + end_date + ") ) or"
-                    + "( check_in >" + start_date + " and check_out< " + end_date + " ) or"
-                    + "( check_in <= " + end_date + " and ( check_out =0 or check_out> " + end_date + ") ) )";
-
             statement = conn.prepareStatement(query);
+            statement.setString(1, roomNo);
+            statement.setLong(2, start_date);
+            statement.setLong(3, end_date);
+            statement.setLong(4, start_date);
+            statement.setLong(5, end_date);
+            statement.setLong(6, end_date);
+            statement.setLong(7, end_date);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.toString() + "\n error coming from returning booking info between two specific days");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError in returning booking info");
         }
-
         return result;
     }
 
     public int getCustomerId(UserInfo user) {
         int id = -1;
+        String query = "SELECT user_id FROM userInfo WHERE name = ? AND phone = ?";
         try {
-            String query = "select user_id from userInfo where name='" + user.getName() + "' and phone ='"
-                    + user.getPhone_no() + "'";
-
-            System.out.println(query + " <<<");
             statement = conn.prepareStatement(query);
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getPhoneNo());
             result = statement.executeQuery();
-            // System.out.println(" user id "+ result.getInt("user_id"));
-
-            id = result.getInt("user_id");
-
+            if (result.next()) {
+                id = result.getInt("user_id");
+            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming from returning AN user function");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError in returning user ID");
         }
-
         return id;
     }
 
-    private void flushStatmentOnly() {
-        {
-            try {
+    private void flushStatementOnly() {
+        try {
+            if (statement != null) {
                 statement.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
             }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
+        }
+    }
+
+    public void flushAll() {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (result != null) {
+                result.close();
+            }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
         }
     }
 }

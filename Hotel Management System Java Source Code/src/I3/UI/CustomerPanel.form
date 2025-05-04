@@ -23,34 +23,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-        <Group type="102" alignment="0" attributes="0">
-          <EmptySpace max="-2" attributes="0"/>
-          <Component id="btn_reset" min="-2" pref="67" max="-2" attributes="0"/>
-          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-          <EmptySpace max="32767" attributes="0"/>
-          <Component id="jScrollPane1" min="-2" pref="461" max="-2" attributes="0"/>
-          <EmptySpace max="-2" attributes="0"/>
-        </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btn_reset" min="-2" pref="67" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="461" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-        <Group type="102" attributes="0">
-          <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
-          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-          <EmptySpace pref="45" max="32767" attributes="0"/>
-        </Group>
-        <Group type="102" alignment="0" attributes="0">
-          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-          <Component id="btn_reset" min="-2" max="-2" attributes="0"/>
-          <EmptySpace max="32767" attributes="0"/>
-        </Group>
-        <Group type="102" alignment="0" attributes="0">
-          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-          <EmptySpace max="32767" attributes="0"/>
-        </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+              <Component id="btn_reset" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -97,74 +97,74 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-            <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                <Component id="btn_deleteCustomer" pref="0" max="32767" attributes="0"/>
-                <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btn_editCustomer" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                    <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" pref="54" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel5" max="32767" attributes="0"/>
-                    </Group>
-                    <EmptySpace type="separate" max="-2" attributes="0"/>
-                    <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tf_id" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                        <Component id="tf_address" alignment="0" max="32767" attributes="0"/>
-                        <Component id="tf_phone" alignment="0" max="32767" attributes="0"/>
-                        <Component id="tf_name" alignment="0" pref="181" max="32767" attributes="0"/>
-                        <Component id="tf_type" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btn_deleteCustomer" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btn_editCustomer" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" pref="54" max="32767" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel5" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tf_id" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tf_address" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tf_phone" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tf_name" alignment="0" pref="181" max="32767" attributes="0"/>
+                                      <Component id="tf_type" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="btn_addCustomer" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                    </Group>
                   </Group>
-                  <Component id="btn_addCustomer" alignment="0" max="32767" attributes="0"/>
-                </Group>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
-            </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-            <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                <Component id="tf_name" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_name" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_address" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_phone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="tf_type" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tf_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btn_addCustomer" min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btn_editCustomer" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btn_deleteCustomer" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                <Component id="tf_address" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                <Component id="tf_phone" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                <Component id="tf_type" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                <Component id="tf_id" alignment="3" min="-2" max="-2" attributes="0"/>
-                <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btn_addCustomer" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btn_editCustomer" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btn_deleteCustomer" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
-            </Group>
           </Group>
         </DimensionLayout>
       </Layout>

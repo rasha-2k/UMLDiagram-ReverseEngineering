@@ -68,7 +68,7 @@
           <Argument type="int" name="order_id"/>
         </Method>
         <Method name="getCustomer_id" returnType="int" visibility="public"/>
-        <Method name="setCustomer_id" returnType="void" visibility="public">
+        <Method name="setCustomerId" returnType="void" visibility="public">
           <Argument type="int" name="customer_id"/>
         </Method>
         <Method name="getDateTime" returnType="String" visibility="public"/>
@@ -95,7 +95,7 @@
       <Constructors/>
       <Methods>
         <Method name="getFood_id" returnType="int" visibility="public"/>
-        <Method name="setFood_id" returnType="void" visibility="public">
+        <Method name="setFoodId" returnType="void" visibility="public">
           <Argument type="int" name="food_id"/>
         </Method>
         <Method name="getName" returnType="String" visibility="public"/>
@@ -300,7 +300,7 @@
       <Constructors/>
       <Methods>
         <Method name="getCustomer_id" returnType="int" visibility="public"/>
-        <Method name="setCustomer_id" returnType="void" visibility="public">
+        <Method name="setCustomerId" returnType="void" visibility="public">
           <Argument type="int" name="customer_id"/>
         </Method>
         <Method name="getName" returnType="String" visibility="public"/>

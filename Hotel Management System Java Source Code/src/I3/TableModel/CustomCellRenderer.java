@@ -12,10 +12,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
-/**
- *
- * @author Faysal
- */
 public class CustomCellRenderer extends DefaultTableCellRenderer {
 
     @Override

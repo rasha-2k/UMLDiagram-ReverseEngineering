@@ -1,38 +1,39 @@
 package I3.Classes;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Booking {
 
-    // int CONFIRMED = 0;
-    // int RESERVED = 1;
+    // Constants for booking types
+    public static final String RESERVED = "Reserved";
+    public static final String CONFIRMED = "Confirmed";
 
-    // required Object
-
+    // Required objects
     private UserInfo customer;
-    ArrayList<Room> rooms;
+    private ArrayList<Room> rooms;
 
-    private int booking_id;
+    // Booking details
+    private int bookingId;
     private long checkInDateTime;
     private long checkOutDateTime;
     private String bookingType;
-    private int person;
-    // private int roomsFare;
+    private int numberOfGuests;
 
+    // Constructor
     public Booking() {
-        customer = new UserInfo();
-        rooms = new ArrayList<>();
-        booking_id = -1;
-        bookingType = "Reserved";
+        this.customer = new UserInfo();
+        this.rooms = new ArrayList<>();
+        this.bookingId = -1;
+        this.bookingType = RESERVED;
     }
 
-    public int getBooking_id() {
-        return booking_id;
+    // Getters and Setters
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void setBooking_id(int booking_id) {
-        this.booking_id = booking_id;
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
     public String getBookingType() {
@@ -43,49 +44,12 @@ public class Booking {
         this.bookingType = bookingType;
     }
 
-    public void addRoom(String roomNo) {
-        rooms.add(new Room(roomNo));
-
+    public int getNumberOfGuests() {
+        return numberOfGuests;
     }
 
-    public void removeRoom(String roomNo) {
-        for (Room a : rooms) {
-            if (a.getRoom_no().equals(roomNo)) {
-                rooms.remove(a);
-            }
-        }
-    }
-
-    public int getPerson() {
-        return person;
-    }
-
-    public void setPerson(int person) {
-        this.person = person;
-    }
-
-    public ArrayList<Room> getRooms() {
-        return rooms;
-    }
-
-    public int getRoomsFare() {
-        int total = 0;
-        for (Room room : rooms) {
-            total += room.getRoom_class().getPricePerDay();
-        }
-        return total;
-    }
-
-    public UserInfo getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(UserInfo customer) {
-        this.customer = customer;
-    }
-
-    public void setCheckOutDateTime(int checkOutDateTime) {
-        this.checkOutDateTime = checkOutDateTime;
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
     }
 
     public long getCheckInDateTime() {
@@ -104,4 +68,31 @@ public class Booking {
         this.checkOutDateTime = checkOutDateTime;
     }
 
+    public UserInfo getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UserInfo customer) {
+        this.customer = customer;
+    }
+
+    public ArrayList<Room> getRooms() {
+        return new ArrayList<>(rooms); // Return a copy to ensure encapsulation
+    }
+
+    // Methods for managing rooms
+    public void addRoom(String roomNo) {
+        rooms.add(new Room(roomNo));
+    }
+
+    public void removeRoom(String roomNo) {
+        rooms.removeIf(room -> room.getRoomNo().equals(roomNo));
+    }
+
+    // Calculate the total fare for all rooms
+    public int getRoomsFare() {
+        return rooms.stream()
+                    .mapToInt(room -> room.getRoomClass().getPricePerDay())
+                    .sum();
+    }
 }

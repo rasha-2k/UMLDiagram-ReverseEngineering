@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package I3.DatabaseOperation;
 
 import I3.Classes.Room;
@@ -14,194 +9,167 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class RoomDb {
-    Connection conn = DataBaseConnection.connectTODB();
-    PreparedStatement statement = null;
-    ResultSet result = null;
+    private final Connection conn = DataBaseConnection.connectTODB();
+    private PreparedStatement statement = null;
+    private ResultSet result = null;
 
     public void insertRoom(Room room) {
+        String insertQuery = "INSERT INTO room (room_no, bed_number, tv, wifi, gizer, phone, room_class) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
-            String insertQuery = "insert into room('room_no','bed_number','tv','wifi','gizer','phone','room_class')"
-                    + " values('"
-                    + room.getRoom_no()
-                    + "'," + room.getBed_number() + ""
-                    + ",'" + room.isHasTV() + "'"
-                    + ",'" + room.isHasWIFI() + "'"
-                    + ",'" + room.isHasGizer() + "'"
-                    + ",'" + room.isHasPhone() + "'"
-                    + ",'" + room.getRoom_class().getRoom_type() + "'"
-                    + ")";
-
-            System.out.println(">>>>>>>>>> " + room.getRoom_class().getRoom_type());
             statement = conn.prepareStatement(insertQuery);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully inserted a new Room ");
-
+            statement.setString(1, room.getRoomNo());
+            statement.setInt(2, room.getBedNumber());
+            statement.setString(3, boolToString(room.hasTV()));
+            statement.setString(4, boolToString(room.hasWiFi()));
+            statement.setString(5, boolToString(room.hasGizer()));
+            statement.setString(6, boolToString(room.hasPhone()));
+            statement.setString(7, room.getRoomClass().getRoomType());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully inserted a new Room");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "InsertQuery of Room Class Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nInsertQuery of Room Class Failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
     }
 
     public ResultSet getRooms() {
+        String query = "SELECT * FROM room";
         try {
-            String query = "select * from room";
             statement = conn.prepareStatement(query);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming from returning all Room DB Operation");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError retrieving all rooms");
         }
-
         return result;
     }
 
     public int getNoOfRooms() {
         int rooms = -1;
+        String query = "SELECT COUNT(room_no) AS noRoom FROM room";
         try {
-            String query = "select count(room_no)  as noRoom from room";
             statement = conn.prepareStatement(query);
             result = statement.executeQuery();
-            while (result.next()) {
+            if (result.next()) {
                 rooms = result.getInt("noRoom");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n error coming count Room DB Operation");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError counting rooms");
         }
-
         return rooms;
     }
 
     public ResultSet getAllRoomNames() {
+        String query = "SELECT room_no FROM room";
         try {
-            String query = "select room_no from room";
             statement = conn.prepareStatement(query);
             result = statement.executeQuery();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.toString() + "\n error coming from returning all Room_No  ROOM DB Operation");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError retrieving all room numbers");
         }
-
         return result;
     }
 
     public void deleteRoom(int roomId) {
-
+        String deleteQuery = "DELETE FROM room WHERE room_id = ?";
         try {
-            String deleteQuery = "delete from room where room_id=" + roomId;
             statement = conn.prepareStatement(deleteQuery);
-            statement.execute();
+            statement.setInt(1, roomId);
+            statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Deleted room");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Delete query room Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nDelete query failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
     }
 
     public void updateRoom(Room room) {
+        String updateQuery = "UPDATE room SET room_no = ?, bed_number = ?, tv = ?, wifi = ?, gizer = ?, phone = ?, room_class = ? WHERE room_id = ?";
         try {
-            String updateQuery = "update room set room_no = '"
-                    + room.getRoom_no() + "', bed_number="
-                    + room.getBed_number() + ", tv = '"
-                    + boolToString(room.isHasTV()) + "', wifi = '"
-                    + boolToString(room.isHasWIFI()) + "',gizer = '"
-                    + boolToString(room.isHasGizer()) + "', phone = '"
-                    + boolToString(room.isHasPhone()) + "', room_class= '"
-                    + room.getRoom_class().getRoom_type() + "', meal_id = ";
-
-            System.out.println(">>>>>>>>>> " + updateQuery);
-            // System.out.println(updateQuery);
             statement = conn.prepareStatement(updateQuery);
-
-            // System.out.println(updateQuery);
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully updated a room");
+            statement.setString(1, room.getRoomNo());
+            statement.setInt(2, room.getBedNumber());
+            statement.setString(3, boolToString(room.hasTV()));
+            statement.setString(4, boolToString(room.hasWiFi()));
+            statement.setString(5, boolToString(room.hasGizer()));
+            statement.setString(6, boolToString(room.hasPhone()));
+            statement.setString(7, room.getRoomClass().getRoomType());
+            statement.setInt(8, room.getRoomId());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully updated a room");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "Update query Failed");
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nUpdate query failed");
         } finally {
-            flushStatmentOnly();
+            flushStatementOnly();
         }
+    }
 
+    public void insertRoomType(RoomFare roomType) {
+        String insertRoomTypeQuery = "INSERT INTO roomType (type, price) VALUES (?, ?)";
+        try {
+            statement = conn.prepareStatement(insertRoomTypeQuery);
+            statement.setString(1, roomType.getRoomType());
+            statement.setDouble(2, roomType.getPricePerDay());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully inserted a new Room Type");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nInsertQuery failed");
+        } finally {
+            flushStatementOnly();
+        }
+    }
+
+    public ResultSet getRoomType() {
+        String query = "SELECT * FROM roomType";
+        try {
+            statement = conn.prepareStatement(query);
+            result = statement.executeQuery();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nError retrieving all Room Types");
+        }
+        return result;
+    }
+
+    public void updateRoomType(RoomFare roomType) {
+        String updateRoomTypeQuery = "UPDATE roomType SET price = ? WHERE type = ?";
+        try {
+            statement = conn.prepareStatement(updateRoomTypeQuery);
+            statement.setDouble(1, roomType.getPricePerDay());
+            statement.setString(2, roomType.getRoomType());
+            statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Successfully updated a Room Type");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.toString() + "\nUpdateQuery failed");
+        } finally {
+            flushStatementOnly();
+        }
     }
 
     public String boolToString(boolean value) {
         return value ? "true" : "false";
     }
 
-    public void insertRoomType(RoomFare roomType) {
-        try {
-            String insertRoomTypeQuery = "insert into roomType values('" + roomType.getRoom_type() + "',"
-                    + roomType.getPricePerDay() + ")";
-
-            System.out.println(">>>>>>>>>> " + insertRoomTypeQuery);
-
-            statement = conn.prepareStatement(insertRoomTypeQuery);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully inserted a new Room Type");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "InsertQuery Failed");
-        } finally {
-            flushStatmentOnly();
-        }
-    }
-
-    public ResultSet getRoomType() {
-        try {
-            String query = "select * from roomType";
-            statement = conn.prepareStatement(query);
-            result = statement.executeQuery();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.toString() + "\n error coming from returning all Room Type DB Operation");
-        }
-
-        return result;
-    }
-
-    public void updateRoomType(RoomFare roomType) {
-        try {
-            String updateRoomTypeQuery = "update roomType set price= " + roomType.getPricePerDay() + " where type='"
-                    + roomType.getRoom_type() + "'";
-
-            // System.out.println(">>>>>>>>>> "+ updateRoomTypeQuery);
-            statement = conn.prepareStatement(updateRoomTypeQuery);
-
-            statement.execute();
-
-            JOptionPane.showMessageDialog(null, "successfully updated a  Room Type");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.toString() + "\n" + "UpdateQuery Failed");
-        } finally {
-            flushStatmentOnly();
-        }
-    }
-
     public void flushAll() {
-        {
-            try {
+        try {
+            if (statement != null) {
                 statement.close();
+            }
+            if (result != null) {
                 result.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
             }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
         }
     }
 
-    private void flushStatmentOnly() {
-        {
-            try {
+    private void flushStatementOnly() {
+        try {
+            if (statement != null) {
                 statement.close();
-            } catch (SQLException ex) {
-                System.err.print(ex.toString() + " >> CLOSING DB");
             }
+        } catch (SQLException ex) {
+            System.err.print(ex.toString() + " >> CLOSING DB");
         }
     }
-
 }

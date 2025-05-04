@@ -1,24 +1,20 @@
 package I3.Classes;
 
-/**
- *
- * @author Faysal
- */
 public class Order {
 
-    int orderId;
-    int bookingId;
-    String foodItem;
-    int price;
-    int quantity;
-    int total;
+    private int orderId;
+    private int bookingId;
+    private String foodItem;
+    private int price;
+    private int quantity;
+    private int total;
 
-    public Order(int b, String f, int p, int q, int t) {
-        bookingId = b;
-        foodItem = f;
-        price = p;
-        quantity = q;
-        total = t;
+    public Order(int bookingId, String foodItem, int price, int quantity, int total) {
+        this.bookingId = bookingId;
+        this.foodItem = foodItem;
+        this.price = price;
+        this.quantity = quantity;
+        this.total = total;
     }
 
     public int getOrderId() {
@@ -69,4 +65,15 @@ public class Order {
         this.total = total;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", bookingId=" + bookingId +
+                ", foodItem='" + foodItem + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", total=" + total +
+                '}';
+    }
 }

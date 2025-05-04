@@ -2,16 +2,16 @@ package I3.Classes;
 
 public class Food {
 
-    private int food_id;
+    private int foodId;
     private String name;
     private int price;
 
-    public int getFood_id() {
-        return food_id;
+    public int getFoodId() {
+        return foodId;
     }
 
-    public void setFood_id(int food_id) {
-        this.food_id = food_id;
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
     }
 
     public String getName() {
