@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="I3.Classes">
+  <ClassDiagramComponents>
+    <Class name="Booking" package="I3.Classes" visibility="public" xPosition="508.0" yPosition="8.0">
+      <Fields>
+        <Field name="customer" type="UserInfo" visibility="private"/>
+        <Field name="rooms" type="ArrayList&lt;Room&gt;" visibility="package"/>
+        <Field name="booking_id" type="int" visibility="private"/>
+        <Field name="checkInDateTime" type="long" visibility="private"/>
+        <Field name="checkOutDateTime" type="long" visibility="private"/>
+        <Field name="bookingType" type="String" visibility="private"/>
+        <Field name="person" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getBooking_id" returnType="int" visibility="public"/>
+        <Method name="setBooking_id" returnType="void" visibility="public">
+          <Argument type="int" name="booking_id"/>
+        </Method>
+        <Method name="getBookingType" returnType="String" visibility="public"/>
+        <Method name="setBookingType" returnType="void" visibility="public">
+          <Argument type="String" name="bookingType"/>
+        </Method>
+        <Method name="addRoom" returnType="void" visibility="public">
+          <Argument type="String" name="roomNo"/>
+        </Method>
+        <Method name="removeRoom" returnType="void" visibility="public">
+          <Argument type="String" name="roomNo"/>
+        </Method>
+        <Method name="getPerson" returnType="int" visibility="public"/>
+        <Method name="setPerson" returnType="void" visibility="public">
+          <Argument type="int" name="person"/>
+        </Method>
+        <Method name="getRooms" returnType="ArrayList&lt;Room&gt;" visibility="public"/>
+        <Method name="getRoomsFare" returnType="int" visibility="public"/>
+        <Method name="getCustomer" returnType="UserInfo" visibility="public"/>
+        <Method name="setCustomer" returnType="void" visibility="public">
+          <Argument type="UserInfo" name="customer"/>
+        </Method>
+        <Method name="setCheckOutDateTime" returnType="void" visibility="public">
+          <Argument type="int" name="checkOutDateTime"/>
+        </Method>
+        <Method name="getCheckInDateTime" returnType="long" visibility="public"/>
+        <Method name="setCheckInDateTime" returnType="void" visibility="public">
+          <Argument type="long" name="checkInDateTime"/>
+        </Method>
+        <Method name="getCheckOutDateTime" returnType="long" visibility="public"/>
+        <Method name="setCheckOutDateTime" returnType="void" visibility="public">
+          <Argument type="long" name="checkOutDateTime"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ExtraOrders" package="I3.Classes" visibility="public" xPosition="457.0" yPosition="604.0">
+      <Fields>
+        <Field name="order_id" type="int" visibility="private"/>
+        <Field name="customer_id" type="int" visibility="private"/>
+        <Field name="dateTime" type="String" visibility="private"/>
+        <Field name="quantity" type="int" visibility="private"/>
+        <Field name="item" type="Item" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getOrder_id" returnType="int" visibility="public"/>
+        <Method name="setOrder_id" returnType="void" visibility="public">
+          <Argument type="int" name="order_id"/>
+        </Method>
+        <Method name="getCustomer_id" returnType="int" visibility="public"/>
+        <Method name="setCustomer_id" returnType="void" visibility="public">
+          <Argument type="int" name="customer_id"/>
+        </Method>
+        <Method name="getDateTime" returnType="String" visibility="public"/>
+        <Method name="setDateTime" returnType="void" visibility="public">
+          <Argument type="String" name="dateTime"/>
+        </Method>
+        <Method name="getQuantity" returnType="int" visibility="public"/>
+        <Method name="setQuantity" returnType="void" visibility="public">
+          <Argument type="int" name="quantity"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public"/>
+        <Method name="setItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="calculateTotal" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Food" package="I3.Classes" visibility="public" xPosition="1139.0" yPosition="670.0">
+      <Fields>
+        <Field name="food_id" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="price" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getFood_id" returnType="int" visibility="public"/>
+        <Method name="setFood_id" returnType="void" visibility="public">
+          <Argument type="int" name="food_id"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getPrice" returnType="int" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="int" name="price"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Item" package="I3.Classes" visibility="public" xPosition="847.0" yPosition="642.0">
+      <Fields>
+        <Field name="item_id" type="int" visibility="private"/>
+        <Field name="item_name" type="String" visibility="private"/>
+        <Field name="description" type="String" visibility="private"/>
+        <Field name="price" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getItem_id" returnType="int" visibility="public"/>
+        <Method name="setItem_id" returnType="void" visibility="public">
+          <Argument type="int" name="item_id"/>
+        </Method>
+        <Method name="getItem_name" returnType="String" visibility="public"/>
+        <Method name="setItem_name" returnType="void" visibility="public">
+          <Argument type="String" name="item_name"/>
+        </Method>
+        <Method name="getDescription" returnType="String" visibility="public"/>
+        <Method name="setDescription" returnType="void" visibility="public">
+          <Argument type="String" name="description"/>
+        </Method>
+        <Method name="getPrice" returnType="int" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="int" name="price"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Order" package="I3.Classes" visibility="public" xPosition="1352.0" yPosition="547.0">
+      <Fields>
+        <Field name="orderId" type="int" visibility="package"/>
+        <Field name="bookingId" type="int" visibility="package"/>
+        <Field name="foodItem" type="String" visibility="package"/>
+        <Field name="price" type="int" visibility="package"/>
+        <Field name="quantity" type="int" visibility="package"/>
+        <Field name="total" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="b"/>
+          <Argument type="String" name="f"/>
+          <Argument type="int" name="p"/>
+          <Argument type="int" name="q"/>
+          <Argument type="int" name="t"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getOrderId" returnType="int" visibility="public"/>
+        <Method name="setOrderId" returnType="void" visibility="public">
+          <Argument type="int" name="orderId"/>
+        </Method>
+        <Method name="getBookingId" returnType="int" visibility="public"/>
+        <Method name="setBookingId" returnType="void" visibility="public">
+          <Argument type="int" name="bookingId"/>
+        </Method>
+        <Method name="getFoodItem" returnType="String" visibility="public"/>
+        <Method name="setFoodItem" returnType="void" visibility="public">
+          <Argument type="String" name="foodItem"/>
+        </Method>
+        <Method name="getPrice" returnType="int" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="int" name="price"/>
+        </Method>
+        <Method name="getQuantity" returnType="int" visibility="public"/>
+        <Method name="setQuantity" returnType="void" visibility="public">
+          <Argument type="int" name="quantity"/>
+        </Method>
+        <Method name="getTotal" returnType="int" visibility="public"/>
+        <Method name="setTotal" returnType="void" visibility="public">
+          <Argument type="int" name="total"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Payment" package="I3.Classes" visibility="public" xPosition="31.0" yPosition="418.0">
+      <Fields>
+        <Field name="booking" type="Booking" visibility="private"/>
+        <Field name="orders" type="ArrayList&lt;ExtraOrders&gt;" visibility="package"/>
+        <Field name="totalRentPrice" type="int" visibility="package"/>
+        <Field name="daysStayed" type="int" visibility="package"/>
+        <Field name="payment_date" type="String" visibility="private"/>
+        <Field name="payment_method" type="String" visibility="private"/>
+        <Field name="hasDiscount" type="boolean" visibility="private"/>
+        <Field name="discount" type="float" visibility="private"/>
+        <Field name="totalBill" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Booking" name="b"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getBooking" returnType="Booking" visibility="public"/>
+        <Method name="setBooking" returnType="void" visibility="public">
+          <Argument type="Booking" name="booking"/>
+        </Method>
+        <Method name="getPayment_date" returnType="String" visibility="public"/>
+        <Method name="setPayment_date" returnType="void" visibility="public">
+          <Argument type="String" name="payment_date"/>
+        </Method>
+        <Method name="getPayment_method" returnType="String" visibility="public"/>
+        <Method name="setPayment_method" returnType="void" visibility="public">
+          <Argument type="String" name="payment_method"/>
+        </Method>
+        <Method name="isHasDiscount" returnType="boolean" visibility="public"/>
+        <Method name="setHasDiscount" returnType="void" visibility="public">
+          <Argument type="boolean" name="hasDiscount"/>
+        </Method>
+        <Method name="getDiscount" returnType="float" visibility="public"/>
+        <Method name="setDiscount" returnType="void" visibility="public">
+          <Argument type="float" name="discount"/>
+        </Method>
+        <Method name="calculateTotalBill" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Room" package="I3.Classes" visibility="public" xPosition="1081.0" yPosition="8.0">
+      <Fields>
+        <Field name="room_id" type="int" visibility="private"/>
+        <Field name="room_no" type="String" visibility="private"/>
+        <Field name="bed_number" type="int" visibility="private"/>
+        <Field name="hasTV" type="boolean" visibility="private"/>
+        <Field name="hasWIFI" type="boolean" visibility="private"/>
+        <Field name="hasGizer" type="boolean" visibility="private"/>
+        <Field name="hasPhone" type="boolean" visibility="private"/>
+        <Field name="room_class" type="RoomFare" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="roomNo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRoom_id" returnType="int" visibility="public"/>
+        <Method name="setRoom_id" returnType="void" visibility="public">
+          <Argument type="int" name="room_id"/>
+        </Method>
+        <Method name="getRoom_no" returnType="String" visibility="public"/>
+        <Method name="setRoom_no" returnType="void" visibility="public">
+          <Argument type="String" name="room_no"/>
+        </Method>
+        <Method name="getBed_number" returnType="int" visibility="public"/>
+        <Method name="setBed_number" returnType="void" visibility="public">
+          <Argument type="int" name="bed_number"/>
+        </Method>
+        <Method name="isHasTV" returnType="boolean" visibility="public"/>
+        <Method name="setHasTV" returnType="void" visibility="public">
+          <Argument type="boolean" name="hasTV"/>
+        </Method>
+        <Method name="isHasWIFI" returnType="boolean" visibility="public"/>
+        <Method name="setHasWIFI" returnType="void" visibility="public">
+          <Argument type="boolean" name="hasWIFI"/>
+        </Method>
+        <Method name="isHasGizer" returnType="boolean" visibility="public"/>
+        <Method name="setHasGizer" returnType="void" visibility="public">
+          <Argument type="boolean" name="hasGizer"/>
+        </Method>
+        <Method name="isHasPhone" returnType="boolean" visibility="public"/>
+        <Method name="setHasPhone" returnType="void" visibility="public">
+          <Argument type="boolean" name="hasPhone"/>
+        </Method>
+        <Method name="getRoom_class" returnType="RoomFare" visibility="public"/>
+        <Method name="setRoom_class" returnType="void" visibility="public">
+          <Argument type="RoomFare" name="room_class"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RoomFare" package="I3.Classes" visibility="public" xPosition="1514.0" yPosition="125.0">
+      <Fields>
+        <Field name="room_type" type="String" visibility="private"/>
+        <Field name="pricePerDay" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRoom_type" returnType="String" visibility="public"/>
+        <Method name="setRoom_type" returnType="void" visibility="public">
+          <Argument type="String" name="room_type"/>
+        </Method>
+        <Method name="getPricePerDay" returnType="int" visibility="public"/>
+        <Method name="setPricePerDay" returnType="void" visibility="public">
+          <Argument type="int" name="pricePerDay"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserInfo" package="I3.Classes" visibility="public" xPosition="86.0" yPosition="8.0">
+      <Fields>
+        <Field name="customer_id" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="phone_no" type="String" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getCustomer_id" returnType="int" visibility="public"/>
+        <Method name="setCustomer_id" returnType="void" visibility="public">
+          <Argument type="int" name="customer_id"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="getPhone_no" returnType="String" visibility="public"/>
+        <Method name="setPhone_no" returnType="void" visibility="public">
+          <Argument type="String" name="phone_no"/>
+        </Method>
+        <Method name="getType" returnType="String" visibility="public"/>
+        <Method name="setType" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="item" source="I3.Classes.ExtraOrders" target="I3.Classes.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="I3.Classes.ExtraOrders" target="I3.Classes.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="I3.Classes.Payment" target="I3.Classes.Booking" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="room_class" source="I3.Classes.Room" target="I3.Classes.RoomFare" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="customer" source="I3.Classes.Booking" target="I3.Classes.UserInfo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="I3.Classes.Room" target="I3.Classes.RoomFare" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="booking" source="I3.Classes.Payment" target="I3.Classes.Booking" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="I3.Classes.Booking" target="I3.Classes.UserInfo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="orders" source="I3.Classes.Payment" target="I3.Classes.ExtraOrders" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;ExtraOrders&gt;"/>
+    <HasRelation name="rooms" source="I3.Classes.Booking" target="I3.Classes.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Room&gt;"/>
+    <UseRelation source="I3.Classes.Booking" target="I3.Classes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
